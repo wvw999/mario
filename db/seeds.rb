@@ -13,6 +13,8 @@ end
   # pick_desc = [Faker::Food.description, Faker::Vehicle.standard_specs]
   Product.create!(name: Faker::Food.ingredient,
                 description: Faker::Food.description,
+                price: Faker::Commerce.price(range = 0..10.0, as_string = true),
+                country_origin: Faker::Address.country,
                 user_id: User.all.ids.sample)
 end
 

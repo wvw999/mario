@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   # belongs_to :user
 
   def self.get_scope(sort_value)
-    if sort_value == 'title'
+    if sort_value == 'name'
       self.sort_alpha
     elsif sort_value == 'date'
       self.sort_date

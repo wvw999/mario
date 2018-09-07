@@ -1,5 +1,28 @@
-<h1>I am show</h1>
+<h1>Product details</h1>
 
 <h2><%= @product.name %></h2>
 
 <h3><%= @product.description %></h3>
+
+<p>Rate this product:</p>
+<form>
+  <button type="submit" name="button" value="1">1 star</button>
+  <button type="submit" name="button" value="2">2 star</button>
+  <button type="submit" name="button" value="3">3 star</button>
+  <button type="submit" name="button" value="4">4 star</button>
+  <button type="submit" name="button" value="5">5 star</button>
+</form>
+<p><%= link_to "leave your review", new_product_review_path(@product) %></p>
+
+<h3>Recent Reviews:</h3>
+<ul>
+<% @product.reviews.each do |review| %>
+  <li><%= review.review %></li>
+<% end %>
+</ul>
+
+ &Qopf; <span><%= link_to "Back", products_path %></span>
+ &Qopf; <span><%= link_to "Edit", edit_product_path %> </span>
+ &Qopf; <span><%= link_to "Delete", product_path(@product),
+                        :data => {:confirm => "Confirm Product Deletion?",
+                                  :method => "delete"} %></span>  &Qopf;

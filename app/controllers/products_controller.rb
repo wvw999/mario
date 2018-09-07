@@ -1,6 +1,8 @@
 class ProductsController < ActionController::Base
   def index
-    @products = Product.all
+    sort_value = params[:product]
+    @products = Product.get_scope(sort_value)
+    @top_three_products = Product.all.sample(3)
   end
 
   def new
@@ -36,11 +38,11 @@ class ProductsController < ActionController::Base
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to products_path
+    redirect_to "/products/"
   end
 
   private
     def product_params
-      params.require(:product).permit(:name, :description)
+      params.require(:product).permit(:name, :description, :user_id)
     end
 end

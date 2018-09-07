@@ -1,0 +1,14 @@
+<%= render 'errors' %>
+
+<%= form_for @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :password %>
+  <%= f.text_field :password %>
+
+  <%= f.hidden_field :admin %>
+  <%= hidden_field_tag 'selected', 'true'%>
+
+  <%= f.submit %>
+<% end %>

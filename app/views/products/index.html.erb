@@ -1,25 +1,32 @@
 <h1>Welcome to Mario's Specialty Food Products</h1>
   <br>
   <h2>Information about Mario</h2>
-  <p>Mario loves tree frogs</p>
+  <span>&nbsp;&nbsp;Mario loves tree frogs</span>
   <br>
   <h2>Information about Specialty Foods</h2>
-  <p>We serve no tree frog products</p>
+  <span>&nbsp;&nbsp;We serve no tree frog products</span>
   <br>
   <h2>More things to click on</h2>
-  <p>this is not a clickable link</p>
+  <span>&nbsp;&nbsp;this is not a clickable link</span>
   <br>
   <h2>top three new products to be listed here</h2>
-<p> one two three </p>
+  <ul>
+  <% @top_three_products.each do |product| %>
+    <li><%= link_to product.name, product_path(product) %> Rating: <%= product.avg_rating %></li>
+  <% end %>
+  </ul>
 
 <h3>All Products:</h3>
-<ul>
-<% @products.each do |product| %>
-  <li><%= link_to product.name, product_path(product) %> Rating: <%= product.avg_rating %></li>
-<% end %>
-</ul>
-<%= link_to "sort: alpha", products_path(:sort => 'title') %>
+<%= link_to "sort: alpha", products_path(:sort => 'name') %>
 <%= link_to "sort: date", products_path(:sort => 'date') %>
+<table>
+  <tr><td>Product&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Price USD&nbsp;</td><td>Country Of Origin</td><td>Rating&nbsp;&nbsp;</td></tr>
+<% @products.each do |product| %>
+  <tr><td><%= link_to product.name, product_path(product) %> </td><td> <%= product.price %> </td><td> <%= product.country_origin %> </td><td> <%= product.avg_rating %></td></tr>
+<% end %>
+<tr><td></td><td></td><td></td><td></td></tr>
+</table>
+
 <br> <br>
 
 &Qopf; <span><%= link_to "New Product", new_product_path %></span> &Qopf; <span><%= link_to "New User", new_user_path %></span> &Qopf; <span><%= link_to "User Admin", users_path %></span> &Qopf;

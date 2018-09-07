@@ -8,7 +8,7 @@ class ReviewsController < ActionController::Base
     @product = Product.find(params[:product_id])
     @review = @product.reviews.create(review_params)
     if @review.save
-      redirect_to product_path(@post)
+      redirect_to product_path(@product)
     else
       render :new
     end
