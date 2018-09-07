@@ -1,1 +1,25 @@
-<h1>I am index</h1>
+<h1>Welcome to Mario's Specialty Food Products</h1>
+  <br>
+  <h2>Information about Mario</h2>
+  <p>Mario loves tree frogs</p>
+  <br>
+  <h2>Information about Specialty Foods</h2>
+  <p>We serve no tree frog products</p>
+  <br>
+  <h2>More things to click on</h2>
+  <p>this is not a clickable link</p>
+  <br>
+  <h2>top three new products to be listed here</h2>
+<p> one two three </p>
+
+<h3>All Products:</h3>
+<ul>
+<% @products.each do |product| %>
+  <li><%= link_to product.name, product_path(product) %> Rating: <%= product.avg_rating %></li>
+<% end %>
+</ul>
+<%= link_to "sort: alpha", products_path(:sort => 'title') %>
+<%= link_to "sort: date", products_path(:sort => 'date') %>
+<br> <br>
+
+&Qopf; <span><%= link_to "New Product", new_product_path %></span> &Qopf; <span><%= link_to "New User", new_user_path %></span> &Qopf; <span><%= link_to "User Admin", users_path %></span> &Qopf;

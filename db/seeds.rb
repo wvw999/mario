@@ -1,7 +1,25 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Product.destroy_all
+Review.destroy_all
+User.destroy_all
+
+25.times do |index|
+  User.create(username: Faker::Name.name_with_middle,
+    password: "password",
+  admin: true)
+end
+
+50.times do |index|
+  # pick_item = [Faker::Food.ingredient, Faker::Food.spice, Faker::Food.fruits, Faker::Food.vegetables, Faker::Dog.breed]
+  # pick_desc = [Faker::Food.description, Faker::Vehicle.standard_specs]
+  Product.create!(name: Faker::Food.ingredient,
+                description: Faker::Food.description,
+                user_id: User.all.ids.sample)
+end
+
+Product.all.each do |product|
+  # pick = [Faker::TwinPeaks.quote, Faker::Dune.quote, Faker::BojackHorseman.quote, Faker::GreekPhilosophers.quote, Faker::BackToTheFuture.quote, Faker::PrincessBride.quote]
+  5.times do |index|
+    product.reviews.create!(review: Faker::TwinPeaks.quote,
+                          user_id: User.all.ids.sample)
+  end
+end
