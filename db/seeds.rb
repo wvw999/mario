@@ -9,19 +9,19 @@ User.destroy_all
 end
 
 50.times do |index|
-  # pick_item = [Faker::Food.ingredient, Faker::Food.spice, Faker::Food.fruits, Faker::Food.vegetables, Faker::Dog.breed]
-  # pick_desc = [Faker::Food.description, Faker::Vehicle.standard_specs]
-  Product.create!(name: Faker::Food.ingredient,
-                description: Faker::Food.description,
+  pick_item = [Faker::Food.ingredient, Faker::Food.spice, Faker::Food.fruits, Faker::Food.vegetables, Faker::Dog.breed]
+  pick_desc = [Faker::Food.description, Faker::Vehicle.standard_specs]
+  pick_country = [Faker::Address.country, "USA"]
+  Product.create!(name: pick_item.sample,
+                description: pick_desc.sample,
                 price: Faker::Commerce.price(range = 0..10.0, as_string = true),
-                country_origin: Faker::Address.country,
+                country_origin: pick_country.sample,
                 user_id: User.all.ids.sample)
 end
 
 Product.all.each do |product|
-  # pick = [Faker::TwinPeaks.quote, Faker::Dune.quote, Faker::BojackHorseman.quote, Faker::GreekPhilosophers.quote, Faker::BackToTheFuture.quote, Faker::PrincessBride.quote]
   5.times do |index|
-    product.reviews.create!(review: Faker::TwinPeaks.quote,
+    product.reviews.create!(review: Faker::Lorem.paragraph_by_chars(249, false),
                           user_id: User.all.ids.sample)
   end
 end

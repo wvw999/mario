@@ -1,20 +1,19 @@
 <h1>Welcome to Mario's Specialty Food Products</h1>
-  <br>
   <h2>Information about Mario</h2>
   <span>&nbsp;&nbsp;Mario loves tree frogs</span>
   <br>
   <h2>Information about Specialty Foods</h2>
   <span>&nbsp;&nbsp;We serve no tree frog products</span>
   <br>
-  <h2>More things to click on</h2>
-  <span>&nbsp;&nbsp;this is not a clickable link</span>
-  <br>
-  <h2>top three new products to be listed here</h2>
+  <h2>Our three newest products:</h2>
   <ul>
-  <% @top_three_products.each do |product| %>
-    <li><%= link_to product.name, product_path(product) %> Rating: <%= product.avg_rating %></li>
+  <% @products.sort_date.limit(3).each do |product| %>
+    <li><%= link_to product.name, product_path(product) %></li>
   <% end %>
   </ul>
+
+  <h2>Our product with the most reviews:</h2>
+    <span><%= Product.most_reviews[0][:name] %></span>
 
 <h3>All Products:</h3>
 <%= link_to "sort: alpha", products_path(:sort => 'name') %>
@@ -30,3 +29,13 @@
 <br> <br>
 
 &Qopf; <span><%= link_to "New Product", new_product_path %></span> &Qopf; <span><%= link_to "New User", new_user_path %></span> &Qopf; <span><%= link_to "User Admin", users_path %></span> &Qopf;
+
+<h2>More info about products!</h2>
+
+<h3>List of products produced in the USA:</h3>
+
+<ul>
+<% Product.usa.each do |product| %>
+  <li><%= link_to product.name, product_path(product) %> Rating: <%= product.avg_rating %></li>
+<% end %>
+</ul>
