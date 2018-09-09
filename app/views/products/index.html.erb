@@ -33,9 +33,10 @@
 <h2>More info about products!</h2>
 
 <h3>List of products produced in the USA:</h3>
-
-<ul>
+<table>
+<tr><td>Product&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Price USD&nbsp;</td><td>Rating&nbsp;&nbsp;</td></tr>
 <% Product.usa.each do |product| %>
-  <li><%= link_to product.name, product_path(product) %> Rating: <%= product.avg_rating %></li>
+<tr><td><%= link_to product.name, product_path(product) %> </td><td> <%= product.price %> </td><td> <%= product.avg_rating %></td></tr>
 <% end %>
-</ul>
+<tr><td></td><td></td><td></td></tr>
+</table>

@@ -1,6 +1,9 @@
 <%= render('layouts/errors', :object => @review) %>
 
 <%= form_for [@product, @review] do |f| %>
+  <%= f.label :rating %>
+  <%= f.number_field :rating %>
+
   <%= f.label :username %>
   <%= f.collection_select :user_id, User.order(:username),:id, :username %>
 

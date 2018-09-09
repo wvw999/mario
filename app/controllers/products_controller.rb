@@ -1,6 +1,6 @@
 class ProductsController < ActionController::Base
   def index
-    sort_value = params[:product]
+    sort_value = params[:sort]
     @products = Product.get_scope(sort_value)
     @top_three_products = Product.all.sample(3)
   end
@@ -43,6 +43,6 @@ class ProductsController < ActionController::Base
 
   private
     def product_params
-      params.require(:product).permit(:name, :description, :user_id)
+      params.require(:product).permit(:name, :description, :user_id, :rating)
     end
 end

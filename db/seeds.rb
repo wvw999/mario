@@ -16,12 +16,15 @@ end
                 description: pick_desc.sample,
                 price: Faker::Commerce.price(range = 0..10.0, as_string = true),
                 country_origin: pick_country.sample,
-                user_id: User.all.ids.sample)
+                user_id: User.all.ids.sample,
+                ratings: [5, 4, 5, 3, 2])
 end
 
 Product.all.each do |product|
+  ratingz = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5]
   5.times do |index|
     product.reviews.create!(review: Faker::Lorem.paragraph_by_chars(249, false),
-                          user_id: User.all.ids.sample)
+                          user_id: User.all.ids.sample,
+                        rating: ratingz.sample)
   end
 end

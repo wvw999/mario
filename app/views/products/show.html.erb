@@ -4,23 +4,15 @@
 
 <h3><%= @product.description %></h3>
 
-<p>Rate this product:</p>
-<form>
-  <button type="submit" name="button" value="1">1 star</button>
-  <button type="submit" name="button" value="2">2 star</button>
-  <button type="submit" name="button" value="3">3 star</button>
-  <button type="submit" name="button" value="4">4 star</button>
-  <button type="submit" name="button" value="5">5 star</button>
-</form>
 <p><%= link_to "leave your review", new_product_review_path(@product) %></p>
 
 <h3>Recent Reviews:</h3>
-<ul>
 <% @product.reviews.each do |review| %>
-  <li><%= review.review %></li>
+  <p>user's rating: <%= review.rating %> </p>
+  <p><%= review.review %></p>
+  <i>author: <%= User.find(review.user_id).username %></i>
 <% end %>
-</ul>
-
+<br>
  &Qopf; <span><%= link_to "Back", products_path %></span>
  &Qopf; <span><%= link_to "Edit", edit_product_path %> </span>
  &Qopf; <span><%= link_to "Delete", product_path(@product),
