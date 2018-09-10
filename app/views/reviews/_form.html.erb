@@ -1,5 +1,3 @@
-<%= render('layouts/errors', :object => @review) %>
-
 <%= form_for [@product, @review] do |f| %>
   <%= f.label :rating %>
   <%= f.number_field :rating %>
@@ -9,6 +7,6 @@
 
   <%= f.label :review %>
   <%= f.text_field :review %>
-
+<%= render('layouts/errors', :object => @review) %>
   <p><%= f.submit %></p>
 <% end %>
