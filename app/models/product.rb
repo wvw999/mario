@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  validates :name, :description, :presence => true
+  validates :name, :description, :price, :country_origin, :presence => true
   has_and_belongs_to_many :reviews
   # belongs_to :user
 
