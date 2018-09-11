@@ -7,10 +7,15 @@
 <p><%= link_to "leave your review", new_product_review_path(@product) %></p>
 
 <h3>Recent Reviews:</h3>
-<% @product.reviews.each do |review| %>
-  <p>user's rating: <%= review.rating %> </p>
-  <p><%= review.review %></p>
-  <i>author: <%= User.find(review.user_id).username %></i>
+
+<% if @product.reviews != [] %>
+  <% @product.reviews.each do |review| %>
+    <p>user's rating: <%= review.rating %> </p>
+    <p><%= review.review %></p>
+    <i>author: <%= User.find(review.user_id).username %></i>
+  <% end %>
+<% else %>
+  <h3> There are no reviews for this product yet.</h3>
 <% end %>
 <br>
  &Qopf; <span><%= link_to "Back", products_path %></span>

@@ -8,6 +8,7 @@ class ReviewsController < ActionController::Base
     @product = Product.find(params[:product_id])
     @review = @product.reviews.create(review_params)
     if @review.save
+      flash[:notice] = "Review successfully added!"
       @product.ratings.push(@review.rating)
       redirect_to product_path(@product)
     else

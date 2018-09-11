@@ -1,13 +1,14 @@
 <h1>Welcome to Mario's Specialty Food Products</h1>
-  <h2>Information about Mario</h2>
-  <span>&nbsp;&nbsp;Mario loves tree frogs</span>
-  <br>
-  <h2>Information about Specialty Foods</h2>
-  <span>&nbsp;&nbsp;Address:</span>
-  <span>&nbsp;&nbsp;123 4th ave, suite 400</span>
-  <span>&nbsp;&nbsp;Borkenstein, Borklandia, 98765</span>
-  <span>&nbsp;&nbsp;Phone: (+999) 12-3344</span>
-  <span>&nbsp;&nbsp;We serve no tree frog products</span>
+<h2>Information about Mario</h2>
+<span>&nbsp;&nbsp;Mario loves tree frogs</span>
+<br>
+<h2>Information about Specialty Foods</h2>
+<span>&nbsp;&nbsp;Address:</span>
+<span>&nbsp;&nbsp;123 4th ave, suite 400</span>
+<span>&nbsp;&nbsp;Borkenstein, Borklandia, 98765</span>
+<span>&nbsp;&nbsp;Phone: (+999) 12-3344</span>
+<span>&nbsp;&nbsp;We serve no tree frog products</span>
+<% if @products %>
   <br>
   <h2>Our three newest products:</h2>
   <ul>
@@ -19,28 +20,31 @@
   <h2>Our product with the most reviews:</h2>
     <span><%= Product.most_reviews[0][:name] %></span>
 
-<h3>All Products:</h3>
-<%= link_to "sort: alpha", products_path(:sort => 'name') %>
-<%= link_to "sort: date", products_path(:sort => 'date') %>
-<table>
-  <tr><td>Product&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Price USD&nbsp;</td><td>Country Of Origin</td><td>Rating&nbsp;&nbsp;</td></tr>
-<% @products.each do |product| %>
-  <tr><td><%= link_to product.name, product_path(product) %> </td><td> <%= product.price %> </td><td> <%= product.country_origin %> </td><td> <%= product.avg_rating %></td></tr>
+  <h3>All Products:</h3>
+  <%= link_to "sort: alpha", products_path(:sort => 'name') %>
+  <%= link_to "sort: date", products_path(:sort => 'date') %>
+  <table>
+    <tr><td>Product&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Price USD&nbsp;</td><td>Country Of Origin</td><td>Rating&nbsp;&nbsp;</td></tr>
+    <% @products.each do |product| %>
+      <tr><td><%= link_to product.name, product_path(product) %> </td><td> <%= product.price %> </td><td> <%= product.country_origin %> </td><td> <%= product.avg_rating %></td></tr>
+    <% end %>
+    <tr><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <br> <br>
+
+  &Qopf; <span><%= link_to "New Product", new_product_path %></span> &Qopf; <span><%= link_to "New User", new_user_path %></span> &Qopf; <span><%= link_to "User Admin", users_path %></span> &Qopf;
+
+  <h2>More info about products!</h2>
+
+  <h3>List of products produced in the USA:</h3>
+  <table>
+    <tr><td>Product&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Price USD&nbsp;</td><td>Rating&nbsp;&nbsp;</td></tr>
+    <% Product.usa.each do |product| %>
+      <tr><td><%= link_to product.name, product_path(product) %> </td><td> <%= product.price %> </td><td> <%= product.avg_rating %></td></tr>
+    <% end %>
+    <tr><td></td><td></td><td></td></tr>
+  </table>
+<% else %>
+  <h1> There are no products- contact yourself and ask you why no contacts </h1>
 <% end %>
-<tr><td></td><td></td><td></td><td></td></tr>
-</table>
-
-<br> <br>
-
-&Qopf; <span><%= link_to "New Product", new_product_path %></span> &Qopf; <span><%= link_to "New User", new_user_path %></span> &Qopf; <span><%= link_to "User Admin", users_path %></span> &Qopf;
-
-<h2>More info about products!</h2>
-
-<h3>List of products produced in the USA:</h3>
-<table>
-<tr><td>Product&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Price USD&nbsp;</td><td>Rating&nbsp;&nbsp;</td></tr>
-<% Product.usa.each do |product| %>
-<tr><td><%= link_to product.name, product_path(product) %> </td><td> <%= product.price %> </td><td> <%= product.avg_rating %></td></tr>
-<% end %>
-<tr><td></td><td></td><td></td></tr>
-</table>
