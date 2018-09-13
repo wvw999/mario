@@ -3,9 +3,8 @@ require 'interactive_debug_session'
 
 describe "create product" do
   it "adds a new product" do
-    visit products_path
+    visit root_path
     click_link 'New Product'
-    interactive_debug_session
     fill_in 'Name', :with => 'Tree Frog Pizza'
     fill_in 'Description', :with => 'a lovely pizza with tasty tree frogs'
     fill_in 'Price', :with => '4.55'
